@@ -1,0 +1,16 @@
+{
+  "name": "mern-todo-app",
+  "version": "1.0.0",
+  "description": "A full-stack MERN Todo application",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "keywords": ["mern", "todo", "react", "express", "mongodb"],
+  "author": "Your Name",
+  "license": "MIT"
+}
