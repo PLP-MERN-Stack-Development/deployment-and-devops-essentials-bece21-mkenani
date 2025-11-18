@@ -1,16 +1,20 @@
 {
-  "name": "mern-todo-app",
+  "name": "deployment-and-devops-essentials-bece21-mkenani",
   "version": "1.0.0",
-  "description": "A full-stack MERN Todo application",
+  "main": "index.js",
   "scripts": {
-    "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && npm run dev",
-    "install:backend": "cd backend && npm install",
-    "install:frontend": "cd frontend && npm install",
-    "install:all": "npm run install:backend && npm run install:frontend",
-    "build:frontend": "cd frontend && npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["mern", "todo", "react", "express", "mongodb"],
-  "author": "Your Name",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PLP-MERN-Stack-Development/deployment-and-devops-essentials-bece21-mkenani.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PLP-MERN-Stack-Development/deployment-and-devops-essentials-bece21-mkenani/issues"
+  },
+  "homepage": "https://github.com/PLP-MERN-Stack-Development/deployment-and-devops-essentials-bece21-mkenani#readme",
+  "description": ""
 }
