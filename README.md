@@ -2,7 +2,7 @@
 
 ## 📱 Live URLs
 
-[to do app](https://to-do-app-xi-gold.vercel.app/)
+   [to do app](https://mern-todo-tan-eta.vercel.app/)
 
 ## 🛠️ Tech Stack
 
