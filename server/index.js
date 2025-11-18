@@ -46,6 +46,33 @@ app.post('/todos', async (req, res) => {
     res.json(newTodo);
 });
 
+app.put('/todos/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { completed } = req.body;
+
+        const updatedTodo = await Todo.findByIdAndUpdate(
+            id, 
+            { completed }, 
+            { new: true }
+        );
+        res.json(updatedTodo);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// --- DELETE: Remove a Todo ---
+app.delete('/todos/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Todo.findByIdAndDelete(id);
+        res.json({ message: 'Todo deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // --- Global Error Handling (Task 1 Requirement) ---
 app.use((err, req, res, next) => {
     console.error(err.stack);
