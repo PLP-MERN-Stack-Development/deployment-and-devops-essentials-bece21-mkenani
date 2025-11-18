@@ -2,9 +2,7 @@
 
 ## 📱 Live URLs
 
-- **Frontend**: https://mern-todo-app.vercel.app
-- **Backend API**: https://mern-todo-backend.onrender.com
-- **Health Check**: https://mern-todo-backend.onrender.com/api/health
+[to do app](https://to-do-app-xi-gold.vercel.app/)
 
 ## 🛠️ Tech Stack
 
@@ -23,7 +21,10 @@
 - ✅ Responsive design
 - ✅ MongoDB Atlas cloud database
 
+
+
 ##  folder structure
+
 ```
 mern-todo-deploy/
 ├── .github/                      # Configuration for GitHub Actions (Task 4)
