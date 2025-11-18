@@ -1,4 +1,19 @@
 require('dotenv').config();
+require('dotenv').config();
+// SENTRY INTEGRATION START
+const Sentry = require('@sentry/node');
+const Tracing = require('@sentry/tracing'); // Required for performance monitoring
+Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    integrations: [
+        // Integrate with Express
+        new Sentry.Integrations.Http({ tracing: true }),
+        new Tracing.Integrations.Express()
+    ],
+    // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance
+    tracesSampleRate: 1.0, 
+    environment: process.env.NODE_ENV === 'production' ? 'production' : 'development'
+});
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -7,11 +22,16 @@ const morgan = require('morgan');
 
 const app = express();
 
+// SENTRY: 
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
+
 // --- Task 1: Security & Logging Configuration ---
 app.use(express.json());
 app.use(cors());
 app.use(helmet()); // Secure HTTP Headers
 app.use(morgan('combined')); // Logging for production
+
 
 // --- Database Connection (MongoDB Atlas) ---
 const connectDB = async () => {
@@ -32,6 +52,9 @@ const TodoSchema = new mongoose.Schema({
 const Todo = mongoose.model('Todo', TodoSchema);
 
 // --- Routes ---
+app.get('/debug-sentry', function handler(req, res) {
+    throw new Error('Sentry Test Error: This should show up in your dashboard!');
+});
 // Health Check (Task 5 Requirement)
 app.get('/health', (req, res) => res.status(200).send('OK'));
 
@@ -74,9 +97,16 @@ app.delete('/todos/:id', async (req, res) => {
 });
 
 // --- Global Error Handling (Task 1 Requirement) ---
+app.use(Sentry.Handlers.errorHandler());
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Internal Server Error!');
 });
 
 // --- Server Start ---
